@@ -1,7 +1,6 @@
 // imports
 import { View, Text, Pressable, StyleSheet } from "react-native";
-import Colors from "../constants/colors";
-import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
+import Colors from "../../constants/colors";
 
 function PrimaryButton({ children, onPress }) {
   return (
