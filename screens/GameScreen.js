@@ -4,6 +4,9 @@ import Title from "../components/ui/Title";
 import { useState, useEffect } from "react";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui/PrimaryButton";
+import Card from "../components/ui/Card";
+import InstructionText from "../components/ui/InstructionText";
+import { Ionicons } from "@expo/vector-icons";
 
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min) + min);
@@ -57,15 +60,23 @@ function GameScreen({ userNumber, onGameOver }) {
       <Title>Opponent's guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
       <View>
-        <Text>Higher or Lower</Text>
-        <View>
-          <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
-            -
-          </PrimaryButton>
-          <PrimaryButton onPress={nextGuessHandler.bind(this, "greater")}>
-            +
-          </PrimaryButton>
-        </View>
+        <Card>
+          <InstructionText style={styles.InstructionText}>
+            Higher or Lower
+          </InstructionText>
+          <View style={styles.buttonsContainer}>
+            <View style={styles.buttonContainer}>
+              <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
+                <Ionicons name="md-remove" size={24} color="whitesmoke" />
+              </PrimaryButton>
+            </View>
+            <View style={styles.buttonContainer}>
+              <PrimaryButton onPress={nextGuessHandler.bind(this, "greater")}>
+                <Ionicons name="md-add" size={24} color="whitesmoke" />
+              </PrimaryButton>
+            </View>
+          </View>
+        </Card>
       </View>
       <View>
         <Text>Rounds</Text>
@@ -81,5 +92,14 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 12,
     paddingTop: 40,
+  },
+  InstructionText: {
+    marginBottom: 12,
+  },
+  buttonsContainer: {
+    flexDirection: "row",
+  },
+  buttonContainer: {
+    flex: 1,
   },
 });
